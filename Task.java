@@ -1,12 +1,16 @@
 import java.util.Scanner;
 
-public class tasks {
-    public String taskName;
-    public int dueDate;
+public class Task {
+    private String taskName;
+    private int dueDate;
 
-    public Task(String taskName, int dueDate) {
+    private Task(String taskName, int dueDate) {
         this.taskName = taskName;
         this.dueDate = dueDate;
+    }
+
+    public static Task createTask(String taskName, int dueDate) {
+        return new Task(taskName, dueDate);
     }
 
     public static void main(String[] args) {
@@ -26,11 +30,11 @@ public class tasks {
             System.out.print("Enter due date (as an integer): ");
             int dueDate = Integer.parseInt(scanner.nextLine());
 
-            Task task = new Task(taskName, dueDate);
+            Task task = Task.createTask(taskName, dueDate);
             calendar.addTask(task);
         }
 
-        System.out.println("Upcoming tasks and deadlines:");
+        System.out.println("\nUpcoming tasks and deadlines:");
         calendar.displayTasks();
     }
 }
