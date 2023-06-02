@@ -1,7 +1,7 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Calendar {
+public class calendar {
     public static void main(String[] args) {
         Thread asyncThread = new Thread(() -> {
             while (true) {
