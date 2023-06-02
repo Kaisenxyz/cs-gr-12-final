@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
-public class Task {
-    private String taskName;
-    private int dueDate;
+public class tasks {
+    public String taskName;
+    public int dueDate;
 
-    private Task(String taskName, int dueDate) {
+    public tasks(String taskName, int dueDate) {
         this.taskName = taskName;
         this.dueDate = dueDate;
     }
