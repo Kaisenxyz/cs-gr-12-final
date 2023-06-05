@@ -24,6 +24,7 @@ public class gui {
         labelHoldA.setPreferredSize(new Dimension(500, 20));
         labelHoldA.setText("MONTH/YEAR");
         
+        
         JLabel labelHoldC = new JLabel("Monday (DD)", SwingConstants.CENTER);
         labelHoldC.setVerticalAlignment(SwingConstants.TOP);
         labelHoldC.setBorder(border);
