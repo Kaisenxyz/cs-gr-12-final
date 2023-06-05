@@ -3,6 +3,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 //It's all blocks of code for now. til I figure out a cleaner/more efficient way to write it 
+//Also it runs if you write createAndShowGUI();
 public class Main {
     private static void createAndShowGUI() {
         JFrame jFrame = new JFrame("Calendar UI Test");
