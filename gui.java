@@ -24,37 +24,37 @@ public class gui {
         labelHoldA.setPreferredSize(new Dimension(500, 20));
         labelHoldA.setText("MONTH/YEAR");
         
-        JLabel labelHoldC = new JLabel("Monday (MM/DD)", SwingConstants.CENTER);
+        JLabel labelHoldC = new JLabel("Monday (DD)", SwingConstants.CENTER);
         labelHoldC.setVerticalAlignment(SwingConstants.TOP);
         labelHoldC.setBorder(border);
         //labelHoldC.setPreferredSize(new Dimension(50, 100));
 
-        JLabel labelHoldD = new JLabel("Tuesday (MM/DD)", SwingConstants.CENTER);
+        JLabel labelHoldD = new JLabel("Tuesday (DD)", SwingConstants.CENTER);
         labelHoldD.setVerticalAlignment(SwingConstants.TOP);
         labelHoldD.setBorder(border);
         //labelHoldD.setPreferredSize(new Dimension(50, 100));
 
-        JLabel labelHoldE = new JLabel("Wednesday (MM/DD)", SwingConstants.CENTER);
+        JLabel labelHoldE = new JLabel("Wednesday (DD)", SwingConstants.CENTER);
         labelHoldE.setVerticalAlignment(SwingConstants.TOP);
         labelHoldE.setBorder(border);
         //labelHoldE.setPreferredSize(new Dimension(50, 100));
     
-        JLabel labelHoldF = new JLabel("Thursday (MM/DD)", SwingConstants.CENTER);
+        JLabel labelHoldF = new JLabel("Thursday (DD)", SwingConstants.CENTER);
         labelHoldF.setVerticalAlignment(SwingConstants.TOP);
         labelHoldF.setBorder(border);
         //labelHoldF.setPreferredSize(new Dimension(50, 100));
 
-        JLabel labelHoldG = new JLabel("Friday (MM/DD)", SwingConstants.CENTER);
+        JLabel labelHoldG = new JLabel("Friday (DD)", SwingConstants.CENTER);
         labelHoldG.setVerticalAlignment(SwingConstants.TOP);
         labelHoldG.setBorder(border);
         //labelHoldG.setPreferredSize(new Dimension(50, 100));
 
-        JLabel labelHoldH = new JLabel("Saturday (MM/DD)", SwingConstants.CENTER);
+        JLabel labelHoldH = new JLabel("Saturday (DD)", SwingConstants.CENTER);
         labelHoldH.setVerticalAlignment(SwingConstants.TOP);
         labelHoldH.setBorder(border);
         //labelHoldH.setPreferredSize(new Dimension(50, 100));
 
-        JLabel labelHoldI = new JLabel("Sunday (MM/DD)", SwingConstants.CENTER);
+        JLabel labelHoldI = new JLabel("Sunday (DD)", SwingConstants.CENTER);
         labelHoldI.setVerticalAlignment(SwingConstants.TOP);
         labelHoldI.setBorder(border);
         //labelHoldI.setPreferredSize(new Dimension(50, 100));
@@ -130,5 +130,5 @@ public class gui {
     public static void main(String[] args){
         createAndShowGUI();
     }
-    
+
 }
