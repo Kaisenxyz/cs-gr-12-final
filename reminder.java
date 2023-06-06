@@ -2,14 +2,14 @@ import java.util.Scanner;
 
 public class Reminder {
     private String taskName;
-    private int dueDate;
+    private String dueDate;
 
-    public Reminder(String taskName, int dueDate) {
+    public Reminder(String taskName, String dueDate) {
         this.taskName = taskName;
         this.dueDate = dueDate;
     }
 
-    public static Reminder createReminder(String taskName, int dueDate) {
+    public static Reminder createReminder(String taskName, String dueDate) {
         return new Reminder(taskName, dueDate);
     }
 
@@ -26,8 +26,8 @@ public class Reminder {
                 break;
             }
 
-            System.out.print("Enter due date (as an integer): ");
-            int dueDate = Integer.parseInt(scanner.nextLine());
+            System.out.print("Enter due date (format: YYYY/MM/DD): ");
+            String dueDate = scanner.nextLine();
 
             Reminder reminder = Reminder.createReminder(taskName, dueDate);
             reminder.displayReminder();
@@ -39,5 +39,4 @@ public class Reminder {
         System.out.println("Due Date: " + dueDate);
         System.out.println();
     }
-
 }
