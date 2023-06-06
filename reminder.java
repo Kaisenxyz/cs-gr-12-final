@@ -19,7 +19,7 @@ public class Reminder {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Welcome to the Reminder!");
+        System.out.println("Welcome to the Reminder tab!");
 
         while (true) {
             System.out.print("Enter task name (or 'quit' to exit): ");
@@ -29,10 +29,10 @@ public class Reminder {
                 break;
             }
 
-            System.out.print("Enter due date (format: yyyy/MM/dd): ");
+            System.out.print("Enter due date (format: MM/dd/yyyy): ");
             String dueDateInput = scanner.nextLine();
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("/MM/dd/yyyy");
             LocalDateTime dueDate = LocalDateTime.parse(dueDateInput, formatter);
 
             Reminder reminder = new Reminder(taskName, dueDate);
