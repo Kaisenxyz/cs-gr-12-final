@@ -4,7 +4,7 @@ import javax.swing.border.Border;
 
 //It's all blocks of code for now. til I figure out a cleaner/more efficient way to write it 
 public class gui {
-    private static void createAndShowGUI() {
+    public static void createAndShowGUI() {
         JFrame jFrame = new JFrame("Calendar UI Test");
         jFrame.setLayout(new BorderLayout());
         jFrame.setSize(500, 400);

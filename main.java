@@ -1,11 +1,9 @@
+import java.time.LocalDateTime;
+
 public class main {
     public static void main(String[] args) {
-        Thread calendarThread = new Thread(() -> {
-            calendar.displayDateTime();
-        });
-
-        Reminder.main(args);
-
-        calendarThread.start();
+        ReminderGUIIntegration reminderGUIIntegration = new ReminderGUIIntegration();
+        Reminder.setReminderGUIIntegration(reminderGUIIntegration);
+        reminderGUIIntegration.main(args);
     }
 }
