@@ -11,10 +11,6 @@ public class ReminderGUIIntegration {
 
     private static void createAndShowGUI() {
         gui = new GUIm();
-
-        // Example usage of the addReminder method
-        LocalDateTime dueDate = LocalDateTime.now().plusDays(2);
-        gui.addReminder("Task 1", dueDate);
     }
 
     public static void registerReminder(String taskName, LocalDateTime dueDate) {
