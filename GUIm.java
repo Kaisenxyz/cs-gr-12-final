@@ -1,13 +1,18 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.text.DateFormatSymbols;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class GUIm extends JFrame {
     private JPanel daysPanel;
+    private List<List<String>> reminders;
 
     public GUIm() {
         super("Calendar Month view");
@@ -17,10 +22,15 @@ public class GUIm extends JFrame {
 
         JPanel mainPanel = new JPanel(new BorderLayout());
 
-        JPanel labelPanel = new JPanel(new FlowLayout(FlowLayout.CENTER)); // Use FlowLayout with center alignment
+        JPanel labelPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JPanel daysOfWeekPanel = new JPanel(new GridLayout(1, 7));
 
         daysPanel = new JPanel(new GridLayout(0, 7));
+        reminders = new ArrayList<>();
+        for (int i = 0; i < 31; i++) {
+            reminders.add(new ArrayList<>());
+        }
+
         Border border = BorderFactory.createLineBorder(Color.GRAY);
         DateFormatSymbols dateFormatSymbols = new DateFormatSymbols(Locale.getDefault());
         String[] dayNames = dateFormatSymbols.getShortWeekdays();
@@ -48,7 +58,7 @@ public class GUIm extends JFrame {
             // Adjust the font size for specific days
             if (i == Calendar.MONDAY || i == Calendar.TUESDAY || i == Calendar.WEDNESDAY ||
                     i == Calendar.THURSDAY || i == Calendar.FRIDAY || i == Calendar.SATURDAY || i == Calendar.SUNDAY) {
-                dayLabel.setFont(dayLabel.getFont().deriveFont(Font.PLAIN, 12)); // Adjust the font size here
+                dayLabel.setFont(dayLabel.getFont().deriveFont(Font.PLAIN, 12));
             }
         }
 
@@ -64,9 +74,15 @@ public class GUIm extends JFrame {
         int maxDaysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
         for (int day = 1; day <= maxDaysInMonth; day++) {
+            final int currentDay = day;
             JLabel dayLabel = new JLabel(String.valueOf(day), SwingConstants.CENTER);
             dayLabel.setBorder(border);
             dayLabel.setPreferredSize(new Dimension(30, 30));
+            dayLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    showRemindersForDay(currentDay);
+                }
+            });
             daysPanel.add(dayLabel);
         }
 
@@ -101,17 +117,29 @@ public class GUIm extends JFrame {
     }
 
     public void addReminder(String taskName, LocalDateTime dueDate) {
-        JLabel dayLabel = new JLabel(taskName, SwingConstants.CENTER);
-        dayLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-        dayLabel.setPreferredSize(new Dimension(30, 30));
-        daysPanel.add(dayLabel);
-        revalidate();
-        repaint();
+        int dayOfMonth = dueDate.getDayOfMonth();
+        if (dayOfMonth >= 1 && dayOfMonth <= 31) {
+            reminders.get(dayOfMonth - 1).add(taskName);
+        }
     }
 
     private String getMonthName(int month) {
         DateFormatSymbols dateFormatSymbols = new DateFormatSymbols(Locale.getDefault());
         return dateFormatSymbols.getMonths()[month];
+    }
+
+    private void showRemindersForDay(int day) {
+        List<String> remindersForDay = reminders.get(day - 1);
+        StringBuilder message = new StringBuilder();
+        if (remindersForDay.isEmpty()) {
+            message.append("No reminders for day ").append(day);
+        } else {
+            message.append("Reminders for day ").append(day).append(":\n");
+            for (String reminder : remindersForDay) {
+                message.append("- ").append(reminder).append("\n");
+            }
+        }
+        JOptionPane.showMessageDialog(this, message.toString(), "Reminders", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static void main(String[] args) {
