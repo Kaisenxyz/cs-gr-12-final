@@ -128,19 +128,22 @@ public class GUIm extends JFrame {
         return dateFormatSymbols.getMonths()[month];
     }
 
-    private void showRemindersForDay(int day) {
-        List<String> remindersForDay = reminders.get(day - 1);
-        StringBuilder message = new StringBuilder();
-        if (remindersForDay.isEmpty()) {
-            message.append("No reminders for day ").append(day);
-        } else {
-            message.append("Reminders for day ").append(day).append(":\n");
-            for (String reminder : remindersForDay) {
-                message.append("- ").append(reminder).append("\n");
-            }
+private void showRemindersForDay(int day) {
+    List<String> remindersForDay = reminders.get(day - 1);
+    StringBuilder message = new StringBuilder();
+    DateFormatSymbols dateFormatSymbols = new DateFormatSymbols(Locale.getDefault());
+    String monthName = dateFormatSymbols.getMonths()[Calendar.getInstance().get(Calendar.MONTH)];
+    if (remindersForDay.isEmpty()) {
+        message.append("No reminders for ").append(monthName).append(" ").append(day);
+    } else {
+        message.append("Reminders for ").append(monthName).append(" ").append(day).append(":\n");
+        for (String reminder : remindersForDay) {
+            message.append("- ").append(reminder).append("\n");
         }
-        JOptionPane.showMessageDialog(this, message.toString(), "Reminders", JOptionPane.INFORMATION_MESSAGE);
     }
+    JOptionPane.showMessageDialog(this, message.toString(), "Reminders", JOptionPane.INFORMATION_MESSAGE);
+}
+
 
     public static void main(String[] args) {
         GUIm gui = new GUIm();
