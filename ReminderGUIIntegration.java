@@ -1,21 +1,28 @@
-import javax.swing.SwingUtilities;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ReminderGUIIntegration {
-    private static GUIm gui;
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(ReminderGUIIntegration::createAndShowGUI);
-        Reminder.main(args);
+    public static void main() {
+        
     }
-
-    private static void createAndShowGUI() {
-        gui = new GUIm();
-    }
+    private static Map<String, LocalDateTime> reminders = new HashMap<>();
 
     public static void registerReminder(String taskName, LocalDateTime dueDate) {
-        SwingUtilities.invokeLater(() -> {
-            gui.addReminder(taskName, dueDate);
-        });
+        reminders.put(taskName, dueDate);
     }
+
+    public static void printReminders() {
+        System.out.println("Registered Reminders:");
+        if (reminders.isEmpty()) {
+            System.out.println("No reminders found.");
+        } else {
+            for (Map.Entry<String, LocalDateTime> entry : reminders.entrySet()) {
+                String taskName = entry.getKey();
+                LocalDateTime dueDate = entry.getValue();
+                System.out.println("Task: " + taskName + ", Due Date: " + dueDate);
+            }
+        }
+    }
+
 }

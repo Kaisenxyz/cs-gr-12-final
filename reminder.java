@@ -1,7 +1,6 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Reminder {
@@ -18,16 +17,15 @@ public class Reminder {
                 break;
             }
 
-            System.out.print("Enter due date (format: MM/dd/yyyy): ");
-            String dueDateStr = scanner.nextLine();
+            System.out.print("Enter due date and time (format: MM/dd/yyyy HH:mm): ");
+            String dueDateTimeStr = scanner.nextLine();
 
             try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.US);
-                LocalDateTime dueDate = LocalDateTime.parse(dueDateStr, formatter);
-                ReminderGUIIntegration.registerReminder(taskName, dueDate);
+                LocalDateTime dueDateTime = LocalDateTime.parse(dueDateTimeStr, DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm"));
+                ReminderGUIIntegration.registerReminder(taskName, dueDateTime);
                 System.out.println("Reminder added successfully!");
             } catch (DateTimeParseException e) {
-                System.out.println("Invalid date format. Please try again.");
+                System.out.println("Invalid date and time format. Please try again.");
             }
         }
 
