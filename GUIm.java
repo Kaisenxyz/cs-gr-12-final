@@ -6,15 +6,14 @@ import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class GUIm {
-    private JFrame jFrame;
+public class GUIm extends JFrame {
     private JPanel daysPanel;
 
-    public void createAndShowGUI() {
-        jFrame = new JFrame("Calendar Month view");
-        jFrame.setLayout(new BorderLayout());
-        jFrame.setSize(500, 400);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public GUIm() {
+        super("Calendar Month view");
+        setSize(500, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
 
         JPanel mainPanel = new JPanel(new BorderLayout());
 
@@ -96,9 +95,9 @@ public class GUIm {
         mainPanel.add(daysOfWeekPanel, BorderLayout.CENTER);
         mainPanel.add(daysPanel, BorderLayout.SOUTH);
 
-        jFrame.add(mainPanel, BorderLayout.CENTER);
+        add(mainPanel, BorderLayout.CENTER);
 
-        jFrame.setVisible(true);
+        setVisible(true);
     }
 
     public void addReminder(String taskName, LocalDateTime dueDate) {
@@ -106,12 +105,17 @@ public class GUIm {
         dayLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         dayLabel.setPreferredSize(new Dimension(30, 30));
         daysPanel.add(dayLabel);
-        jFrame.revalidate();
-        jFrame.repaint();
+        revalidate();
+        repaint();
     }
 
     private String getMonthName(int month) {
         DateFormatSymbols dateFormatSymbols = new DateFormatSymbols(Locale.getDefault());
         return dateFormatSymbols.getMonths()[month];
+    }
+
+    public static void main(String[] args) {
+        GUIm gui = new GUIm();
+        gui.addReminder("Task 1", LocalDateTime.now().plusDays(2));
     }
 }
