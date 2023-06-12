@@ -1,21 +1,10 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Reminder {
-    private String taskName;
-    private LocalDateTime dueDate;
-    private static ReminderGUIIntegration reminderGUIIntegration;
-
-    public Reminder(String taskName, LocalDateTime dueDate) {
-        this.taskName = taskName;
-        this.dueDate = dueDate;
-    }
-
-    public static void setReminderGUIIntegration(ReminderGUIIntegration integration) {
-        reminderGUIIntegration = integration;
-    }
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -30,21 +19,19 @@ public class Reminder {
             }
 
             System.out.print("Enter due date (format: MM/dd/yyyy): ");
-            String dueDateInput = scanner.nextLine();
+            String dueDateStr = scanner.nextLine();
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("/MM/dd/yyyy");
-            LocalDateTime dueDate = LocalDateTime.parse(dueDateInput, formatter);
-
-            Reminder reminder = new Reminder(taskName, dueDate);
-            ReminderGUIIntegration.registerReminder(reminder.getTaskName(), reminder.getDueDate());
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.US);
+                LocalDateTime dueDate = LocalDateTime.parse(dueDateStr, formatter);
+                ReminderGUIIntegration.registerReminder(taskName, dueDate);
+                System.out.println("Reminder added successfully!");
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid date format. Please try again.");
+            }
         }
-    }
 
-    public String getTaskName() {
-        return taskName;
-    }
-
-    public LocalDateTime getDueDate() {
-        return dueDate;
+        System.out.println("Exiting the Reminder tab. Goodbye!");
+        scanner.close();
     }
 }
