@@ -1,10 +1,11 @@
+import java.util.Scanner;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Scanner;
 
-public class Reminder {
-    public static void main(String[] args) {
+public class Reminder implements Runnable {
+    
+    public void run() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to the Reminder tab!");
@@ -31,5 +32,10 @@ public class Reminder {
 
         System.out.println("Exiting the Reminder tab. Goodbye!");
         scanner.close();
+    }
+
+    public static void main(String[] args) {
+        Reminder reminder = new Reminder();
+        reminder.run();
     }
 }
